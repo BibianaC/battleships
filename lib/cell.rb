@@ -1,7 +1,5 @@
 class Cell
 
-  attr_accessor :ship, :status
-
 	def initialize(content)
     @content = content
     @hit_count = 0
@@ -27,10 +25,6 @@ class Cell
 
   def hit?
     @hit
-  end
-
-  def value
-    'x'
   end
 
   def content
