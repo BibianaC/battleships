@@ -2,7 +2,7 @@ require 'cell'
 
 describe Cell do
 
-  let(:cell) {Cell.new('water')}
+  let(:cell) {Cell.new}
   let(:ship) {double :ship}
 
   context "upon initialize it" do
@@ -12,7 +12,7 @@ describe Cell do
     end
 
     it "should not have ships" do
-      expect(cell).not_to have_ships
+      expect(cell).not_to have_ship
     end
 
   end
@@ -26,7 +26,8 @@ describe Cell do
     end
 
     it "should be able to contain ships" do
-      allow(cell.content).to receive(:ship)
+      cell.place!(ship)
+      expect(cell).to have_ship
     end
 
     it "to_s should return 'X' when hit" do
@@ -34,7 +35,7 @@ describe Cell do
       expect(cell.content).to eq('x')
     end
 
-    it "should not be able to be shoot twice" do
+    it "should not be able to be shot twice" do
       cell.hit!
       cell.hit!
       expect(lambda{cell.hit_count}).to raise_error(RuntimeError, 'Cell is hit more than once')

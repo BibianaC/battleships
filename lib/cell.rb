@@ -1,20 +1,20 @@
 class Cell
 
-	def initialize(content)
-    @content = content
+	def initialize
+    @content = :water
     @hit_count = 0
 	end
 
 	def water
-    @content = 'water'
+    @content = :water
 	end
 
   def has_water?
-    @content
+    @content == :water
   end
 
-	def has_ships?
-    @ship
+	def has_ship?
+    @content == :ship
   end
 
   def hit!
@@ -33,6 +33,10 @@ class Cell
 
   def hit_count
     raise 'Cell is hit more than once' if @hit_count > 1
+  end
+
+  def place!(ship)
+    @content = :ship
   end
 
 end
