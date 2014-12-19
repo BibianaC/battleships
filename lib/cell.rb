@@ -2,11 +2,6 @@ class Cell
 
 	def initialize
     @content = :water
-    @hit_count = 0
-	end
-
-	def water
-    @content = :water
 	end
 
   def has_water?
@@ -18,21 +13,19 @@ class Cell
   end
 
   def hit!
-    @hit = true
-    @content = 'x'
-    @hit_count += 1
+    if @content == 'x'
+      raise 'Cell is hit more than once' 
+    else
+      @content = 'x'
+    end
   end
 
   def hit?
-    @hit
+    @content == 'x'
   end
 
   def content
     @content
-  end
-
-  def hit_count
-    raise 'Cell is hit more than once' if @hit_count > 1
   end
 
   def place!(ship)

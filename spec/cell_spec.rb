@@ -30,15 +30,14 @@ describe Cell do
       expect(cell).to have_ship
     end
 
-    it "to_s should return 'X' when hit" do
+    it "should return 'x' when hit" do
       cell.hit!
       expect(cell.content).to eq('x')
     end
 
-    it "should not be able to be shot twice" do
+    it "should not be able to be hit twice" do
       cell.hit!
-      cell.hit!
-      expect(lambda{cell.hit_count}).to raise_error(RuntimeError, 'Cell is hit more than once')
+      expect(lambda{cell.hit!}).to raise_error(RuntimeError, 'Cell is hit more than once')
     end
 
   end
